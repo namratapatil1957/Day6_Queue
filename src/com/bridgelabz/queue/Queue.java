@@ -3,7 +3,7 @@ package com.bridgelabz.queue;
 import java.util.*;
 
 public class Queue {
-	
+
 	public static void main(String[] args) {
 		
 		int choice = 0;
@@ -11,7 +11,7 @@ public class Queue {
 		Scanner sc = new Scanner(System.in);
 		
 		do {
-			System.out.println("\n1.ENQUEUE \n2.EXIT");
+			System.out.println("\n1.ENQUEUE\n2.DQUEUE\n3.EXIT");
 			
 			System.out.println("Enter Choice: ");
 			choice = sc.nextInt();
@@ -25,6 +25,10 @@ public class Queue {
 				break;
 			
 			case 2:
+				qe.dequeue();
+				break;
+			
+			case 3:
 				System.out.println("Byee!!!");
 				break;
 				
@@ -32,7 +36,7 @@ public class Queue {
 				System.out.println("Select from menu only...");
 			}
 		
-		} while (choice != 2);
+		} while (choice != 3);
 		
 	}
 	
@@ -41,6 +45,7 @@ public class Queue {
 class QueueOperations {
 	
 	static int[] myQueue = new int[5];
+	static int TOP = -1;
 	static int rear = -1;
 
 	boolean isFull() {
@@ -55,6 +60,22 @@ class QueueOperations {
 		} else {
 			rear = rear + 1;
 			myQueue[rear] = item;	
+		}
+	}
+
+	public boolean isEmpty() {
+		
+		return (TOP == rear) ? true : false;
+	}
+
+	public void dequeue() {
+		if (isEmpty()) {
+			System.out.println("QUEUE IS EMPTY");
+			
+		} else {
+			TOP = TOP + 1;
+			System.out.println("Dequeue element is: " + myQueue[TOP]);
+			myQueue[TOP] = 0;
 		}
 	}
 
